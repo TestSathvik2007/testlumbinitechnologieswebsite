@@ -1,0 +1,104 @@
+/* ScrollingTextBanner.css */
+
+.scrolling-text-banner {
+  width: 100%;
+  height: 40px;
+  background: linear-gradient(90deg, #1a1a1a, #2a2a2a, #1a1a1a);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  position: relative;
+  margin-top: 120px; /* Adjust this if you have a navbar above */
+  box-sizing: border-box;
+  padding-left: 10px;
+  /* NEW: Use space-between to push items to ends */
+  justify-content: space-between;
+  padding-right: 10px; /* Add padding to the right for the button */
+}
+
+.banner-text-wrapper { /* NEW: A wrapper for the scrolling text */
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  /* Ensure this wrapper takes up as much space as needed for the scrolling content,
+     but doesn't expand unnecessarily to push the button. */
+  flex-grow: 1; /* Allow it to grow, but the button is fixed */
+  overflow: hidden; /* Hide overflowing scrolling content */
+}
+
+
+.banner-text {
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+  /* This element is now contained within banner-text-wrapper for scrolling */
+  /* Remove any direct width or overflow properties that might conflict */
+}
+
+.banner-text-segment {
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 0 10px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  display: inline-block;
+  white-space: nowrap;
+}
+
+.apply-now-btn-inline {
+  background: yellow;
+  color: black;
+  border: none;
+  /* Removed margin: 0 10px; as flexbox will handle spacing */
+  padding: 6px 16px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(255, 107, 107, 0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  min-width: 90px;
+  white-space: nowrap;
+  pointer-events: auto; /* Ensure button is clickable */
+  flex-shrink: 0; /* Prevent the button from shrinking */
+  margin-left: 15px; /* Add some space between scrolling text and button */
+}
+
+.apply-now-btn-inline:hover {
+  background: yellow;
+  color: black;
+  box-shadow: 0 6px 20px rgba(255, 245, 107, 0.4);
+  transform: translateY(-1px);
+}
+
+.apply-now-btn-inline:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(255, 245, 107, 0.4);
+}
+
+.apply-now-btn-inline:focus {
+  outline: 2px solid yellow;
+  outline-offset: 2px;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .banner-text-segment {
+    font-size: 0.55rem;
+    padding: 0 6px;
+  }
+
+  .apply-now-btn-inline {
+    padding: 5px 12px;
+    font-size: 0.45rem;
+    min-width: 80px;
+    margin-left: 10px; /* Adjust margin for smaller screens */
+  }
+
+  .scrolling-text-banner {
+    height: 25px;
+  }
+}

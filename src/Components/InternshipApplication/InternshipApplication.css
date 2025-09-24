@@ -1,0 +1,359 @@
+/* InternshipApplication.css */
+
+.application-container {
+  min-height: 100vh;
+  background: transparent; /* Transparent background with black shade */
+  backdrop-filter: blur(5px); /* Optional: adds a blur effect */
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 120px; /* Add top padding to avoid navbar intersection */
+}
+
+.application-form-wrapper {
+  background: rgba(255, 255, 255, 0.95); /* Semi-transparent white background */
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 800px;
+  width: 100%;
+  margin: 20px auto;
+  overflow: hidden;
+}
+
+.form-header {
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  color: white;
+  padding: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.back-btn {
+  position: absolute;
+  left: 20px;
+  top: 20px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.back-btn:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateX(-2px);
+}
+
+.form-header h1 {
+  margin: 0 0 10px 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.form-header p {
+  margin: 0 0 20px 0;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+/* Progress Bar Styles */
+.progress-container {
+  margin-top: 25px;
+}
+
+.progress-label {
+  font-size: 14px;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4caf50, #8bc34a);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.application-form {
+  padding: 40px;
+}
+
+.form-section {
+  margin-bottom: 50px;
+  padding: 30px;
+  background: rgba(248, 249, 250, 0.8); /* Semi-transparent background */
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  border-left: 4px solid yellow;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.form-section h3 {
+  color: #333;
+  font-size: 1.6rem;
+  margin: -10px -10px 25px -10px;
+  padding: 15px 20px;
+  background: linear-gradient(135deg, black, rgb(255, 238, 0));
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+}
+
+.form-row {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  flex: 1;
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+  color: #333;
+  font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: black;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-group textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+.file-upload-wrapper {
+  position: relative;
+}
+
+.file-input {
+  display: none !important; /* Completely hide the input */
+}
+
+.file-upload-display {
+  border: 2px dashed #000000;
+  border-radius: 8px;
+  padding: 25px;
+  text-align: center;
+  background: rgba(248, 249, 250, 0.6);
+  backdrop-filter: blur(5px);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  user-select: none; /* Prevent text selection */
+}
+
+.file-upload-display:hover {
+  border-color: #d8d25a;
+  background: rgba(227, 242, 253, 0.8);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+.file-upload-display:active {
+  transform: translateY(0);
+}
+
+.file-upload-display::before {
+  content: "📁";
+  font-size: 24px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.file-selected {
+  color: #000000;
+  font-weight: 600;
+}
+
+.file-placeholder {
+  color: #666;
+}
+
+.file-info {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #666;
+}
+
+.form-actions {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #e1e5e9;
+}
+
+.submit-btn {
+  background: black;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 200px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(234, 234, 102, 0.3);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Success Message Styles */
+.success-message {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+  width: 100%;
+  margin: 100px auto;
+  padding: 60px 40px;
+  text-align: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background: #4caf50;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  color: white;
+  margin: 0 auto 30px;
+}
+
+.success-message h2 {
+  color: #333;
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.success-message p {
+  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.back-home-btn {
+  background: #667eea;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+}
+
+.back-home-btn:hover {
+  background: #5a6fd8;
+  transform: translateY(-2px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .application-container {
+    padding: 10px;
+    padding-top: 100px; /* Adjust for mobile navbar */
+  }
+
+  .form-header {
+    padding: 20px;
+  }
+
+  .form-header h1 {
+    font-size: 2rem;
+  }
+
+  .application-form {
+    padding: 20px;
+  }
+
+  .form-row {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .back-btn {
+    position: static;
+    margin-bottom: 20px;
+    align-self: flex-start;
+  }
+
+  .success-message {
+    margin: 50px auto;
+    padding: 40px 20px;
+  }
+
+  .success-message h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .form-section h3 {
+    font-size: 1.3rem;
+  }
+
+  .application-form {
+    padding: 15px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+  }
+}

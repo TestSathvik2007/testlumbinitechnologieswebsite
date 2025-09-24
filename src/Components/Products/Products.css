@@ -1,0 +1,889 @@
+/* ======================
+   PRODUCTS PAGE STYLES
+   ====================== */
+
+.products-container {
+  min-height: 100vh;
+  background: transparent;
+  color: #ffffff;
+  padding-top: 80px;
+}
+
+/* ======================
+   HERO SECTION
+   ====================== */
+.products-hero {
+  text-align: center;
+  padding: 80px 20px 60px;
+  background: transparent;
+}
+
+.hero-content h1 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: #ffffff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* ======================
+   PRODUCTS GRID
+   ====================== */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.product-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  border: 0.5px solid rgba(255, 255, 255, 0.1);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border-color: yellow;
+}
+
+/* Product Image */
+.product-image {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image img {
+  transform: scale(1.1);
+}
+
+.product-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.product-card:hover .product-overlay {
+  opacity: 1;
+}
+
+.view-details-btn {
+  padding: 10px 20px;
+  background: yellow;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.view-details-btn:hover {
+  background: yellow;
+  transform: scale(1.05);
+}
+
+/* Product Content */
+.product-content {
+  padding: 25px;
+}
+
+.product-category {
+  display: inline-block;
+  padding: 5px 12px;
+  background: rgba(0, 212, 255, 0.2);
+  color: yellow;
+  border-radius: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+.product-content h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  color: #ffffff;
+}
+
+.product-content p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+/* Product Features */
+.product-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 25px;
+}
+
+.feature-tag {
+  padding: 5px 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Product Actions */
+.product-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.btn-primary {
+  padding: 12px 20px;
+  background: white;
+  color: black;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(235, 230, 86, 0.4);
+}
+
+.btn-secondary {
+  padding: 12px 20px;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex: 1;
+}
+
+.btn-secondary:hover {
+  border-color: yellow;
+  color: yellow;
+  transform: translateY(-2px);
+}
+
+/* ======================
+   MODAL STYLES
+   ====================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.modal-content {
+  background: rgba(30, 30, 30, 0.98);
+  border-radius: 20px;
+  max-width: 800px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px 30px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin: 0;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(1.1);
+}
+
+.modal-body {
+  padding: 20px 30px 30px;
+}
+
+.modal-image {
+  width: 100%;
+  height: 250px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 30px;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Modal Tabs */
+.modal-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tab-button {
+  padding: 12px 20px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  flex: 1;
+  text-align: center;
+}
+
+.tab-button:hover {
+  color: white;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.tab-button.active {
+  color: white;
+  border-bottom-color: yellow;
+  font-weight: 700;
+  background: rgba(255, 255, 0, 0.1);
+}
+
+.tab-content-container {
+  min-height: 200px;
+}
+
+.modal-section {
+  margin-bottom: 30px;
+}
+
+.modal-section h3 {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: white;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid rgba(255, 255, 0, 0.3);
+}
+
+.modal-section p {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+
+.modal-section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.modal-section li {
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  margin-bottom: 8px;
+  padding-left: 20px;
+  position: relative;
+}
+
+.modal-section li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: yellow;
+  font-weight: bold;
+}
+
+.icon-check,
+.icon-settings {
+  margin-right: 8px;
+  color: yellow;
+  font-weight: bold;
+}
+
+.pricing-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.pricing-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.pricing-card:hover {
+  border-color: yellow;
+  transform: translateY(-5px);
+}
+
+.pricing-card h4 {
+  color: whitesmoke;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.pricing-card p {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.modal-footer {
+  display: flex;
+  gap: 15px;
+  padding: 20px 30px 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-footer .btn-primary,
+.modal-footer .btn-outline {
+  flex: 1;
+  padding: 12px 20px;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-footer .btn-primary {
+  background: white;
+  color: black;
+  border: none;
+}
+
+.modal-footer .btn-primary:hover {
+  background: rgba(255, 255, 0, 0.9);
+  transform: translateY(-2px);
+}
+
+.modal-footer .btn-outline {
+  background: transparent;
+  color: yellow;
+  border: 1px solid yellow;
+}
+
+.modal-footer .btn-outline:hover {
+  background: yellow;
+  color: black;
+  transform: translateY(-2px);
+}
+
+/* ======================
+   CTA SECTION
+   ====================== */
+.products-cta {
+  padding: 80px 20px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(246, 229, 0, 0) 0%, rgb(86, 86, 86) 100%);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  margin-top: 60px;
+}
+
+.cta-content h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin-bottom: 20px;
+  background: #ffffff;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  opacity: 0.8;
+  margin-bottom: 40px;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-primary.large {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  min-width: 200px;
+}
+
+.btn-outline {
+  padding: 15px 30px;
+  background: transparent;
+  color: #ffffff;
+  border: 2px solid yellow;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  font-size: 1.1rem;
+  min-width: 200px;
+}
+
+.btn-outline:hover {
+  background: yellow;
+  color: #000000;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 234, 0, 0.4);
+}
+
+.btn-outline.large {
+  padding: 15px 30px;
+  font-size: 1.1rem;
+  min-width: 200px;
+}
+
+/* ======================
+   ANIMATIONS
+   ====================== */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.product-card {
+  animation: fadeInUp 0.6s ease forwards;
+}
+
+/* Custom Scrollbar for Modal */
+.modal-content::-webkit-scrollbar {
+  width: 8px;
+}
+
+.modal-content::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 0, 0.5);
+  border-radius: 4px;
+}
+
+.modal-content::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 0, 0.7);
+}
+
+/* ======================
+   RESPONSIVE DESIGN
+   ====================== */
+
+/* ======================
+   TABLET STYLES (769px - 1024px)
+   ====================== */
+@media (max-width: 1024px) and (min-width: 769px) {
+  .products-container {
+    padding-top: 70px;
+  }
+
+  .products-hero {
+    padding: 60px 20px 40px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+  }
+
+  .hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    padding: 30px 20px;
+  }
+
+  .product-content {
+    padding: 25px;
+  }
+
+  .product-content h3 {
+    font-size: 1.3rem;
+  }
+
+  .product-content p {
+    font-size: 0.95rem;
+  }
+
+  .modal-content {
+    max-width: 700px;
+  }
+
+  .modal-header {
+    padding: 25px 25px 20px;
+  }
+
+  .modal-body {
+    padding: 20px 25px 25px;
+  }
+}
+
+/* ======================
+   MOBILE STYLES (up to 768px)
+   ====================== */
+@media (max-width: 768px) {
+  .products-container {
+    padding-top: 60px;
+  }
+
+  .products-hero {
+    padding: 40px 15px 30px;
+  }
+
+  .hero-content h1 {
+    font-size: clamp(1.8rem, 6vw, 2.5rem);
+    margin-bottom: 15px;
+  }
+
+  .hero-content p {
+    font-size: 1rem;
+    max-width: 95%;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 20px 15px;
+  }
+  
+  .product-card {
+    border-radius: 12px;
+    max-width: 100%;
+  }
+
+  .product-image {
+    height: 200px;
+  }
+
+  .product-content {
+    padding: 20px;
+  }
+
+  .product-content h3 {
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+  }
+
+  .product-content p {
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+
+  .product-features {
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+
+  .feature-tag {
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+
+  .product-actions {
+    gap: 10px;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 12px 16px;
+    font-size: 0.9rem;
+  }
+
+  /* CTA Section */
+  .products-cta {
+    padding: 50px 15px;
+    margin-top: 40px;
+  }
+
+  .cta-content h2 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin-bottom: 15px;
+  }
+
+  .cta-content p {
+    font-size: 1rem;
+    margin-bottom: 30px;
+    max-width: 95%;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+  }
+
+  .btn-primary.large,
+  .btn-outline.large {
+    width: 100%;
+    max-width: 300px;
+    padding: 14px 25px;
+    font-size: 1rem;
+  }
+
+  /* Modal Responsive */
+  .modal-overlay {
+    padding: 10px;
+  }
+  
+  .modal-content {
+    max-height: 95vh;
+    border-radius: 15px;
+  }
+  
+  .modal-header {
+    padding: 20px 20px 15px;
+  }
+  
+  .modal-header h2 {
+    font-size: 1.4rem;
+  }
+  
+  .close-btn {
+    padding: 8px;
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    padding: 15px 20px 20px;
+  }
+  
+  .modal-image {
+    height: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .modal-tabs {
+    gap: 5px;
+    margin-bottom: 20px;
+  }
+
+  .tab-button {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .modal-section {
+    margin-bottom: 20px;
+  }
+
+  .modal-section h3 {
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+  }
+
+  .modal-section p, .modal-section li {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  .pricing-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .pricing-card {
+    padding: 15px;
+  }
+  
+  .modal-footer {
+    padding: 15px 20px 20px;
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .products-hero {
+    padding: 30px 10px 20px;
+  }
+  
+  .hero-content h1 {
+    font-size: clamp(1.6rem, 7vw, 2rem);
+  }
+
+  .hero-content p {
+    font-size: 0.9rem;
+  }
+  
+  .products-grid {
+    padding: 15px 10px;
+    gap: 15px;
+  }
+
+  .product-content {
+    padding: 15px;
+  }
+
+  .product-content h3 {
+    font-size: 1.1rem;
+  }
+
+  .product-content p {
+    font-size: 0.85rem;
+  }
+
+  .btn-primary, .btn-secondary {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+  }
+
+  .products-cta {
+    padding: 40px 10px;
+  }
+
+  .cta-content h2 {
+    font-size: clamp(1.4rem, 6vw, 1.8rem);
+  }
+
+  .cta-content p {
+    font-size: 0.9rem;
+  }
+
+  .modal-header {
+    padding: 15px 15px 10px;
+  }
+
+  .modal-header h2 {
+    font-size: 1.2rem;
+  }
+
+  .modal-body {
+    padding: 10px 15px 15px;
+  }
+
+  .modal-image {
+    height: 160px;
+  }
+
+  .tab-button {
+    padding: 8px 10px;
+    font-size: 0.8rem;
+  }
+
+  .modal-section h3 {
+    font-size: 1rem;
+  }
+
+  .modal-section p, .modal-section li {
+    font-size: 0.85rem;
+  }
+}
+
+/* ======================
+   ACCESSIBILITY
+   ====================== */
+@media (prefers-reduced-motion: reduce) {
+  .product-card,
+  .btn-primary,
+  .btn-secondary,
+  .modal-content,
+  .tab-button {
+    transition: none;
+    animation: none;
+  }
+}
+
+/* Focus styles for accessibility */
+.btn-primary:focus,
+.btn-secondary:focus,
+.btn-outline:focus,
+.view-details-btn:focus,
+.tab-button:focus,
+.close-btn:focus {
+  outline: 2px solid yellow;
+  outline-offset: 2px;
+}
+
+/* Additional utility classes */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
