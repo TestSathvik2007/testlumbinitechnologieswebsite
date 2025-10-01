@@ -197,7 +197,7 @@
 
 .card:hover::before {
   opacity: 1;
-  animation: cardGlowSpin 4s linear infinite;
+  animation: cardGlowSpin 0s linear infinite;
 }
 
 .card::after {

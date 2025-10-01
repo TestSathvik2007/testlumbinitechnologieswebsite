@@ -1,9 +1,8 @@
-import React, { useState, lazy, Suspense } from 'react';
+import React, { useState } from 'react';
 import './Products.css';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
-// Import your local image with the exact filename 'lms.jpg'
-import lmsImage from '../../assets/lms.jpg'; 
+import lmsImage from '../../assets/skillarc.png'; 
 
 const ProductsComponent = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -13,13 +12,12 @@ const ProductsComponent = () => {
   const products = [
     {
       id: 1,
-      title: "Learning Management System (SkillArc)",
-      description: "An all-in-one next-generation LMS designed to revolutionize digital learning. Our platform combines scalability, interactivity, and analytics to deliver impactful education experiences..",
-      features: [" Admin & Instructor Dashboards", "Interactive Quizzes & Assignments", "Mobile-First Design", "AI-Powered Progress Tracking", "Secure & Scalable Cloud Hosting"],
-      // Use the imported image variable here
+      title: "SkillArc  ( Learning Management System )",
+      description: "An all-in-one next-generation LMS designed to revolutionize digital learning. Our platform combines scalability, interactivity, and analytics to deliver impactful education experiences.",
+      features: ["Admin & Instructor Dashboards", "Interactive Quizzes & Assignments", "Mobile-First Design", "AI-Powered Progress Tracking", "Secure & Scalable Cloud Hosting"],
       image: lmsImage, 
       detailedInfo: {
-        overview: "Our Learning Management System – SkillArc is designed to transform the way educational institutions, training providers, and enterprises deliver knowledge. With an intuitive interface, scalable architecture, and built-in analytics, SkillArc ensures a seamless experience for both instructors and learners. Whether it’s online courses, corporate upskilling, or blended learning, our platform adapts to your needs with cutting-edge web and AI-driven technologies.",
+        overview: "Our Learning Management System – SkillArc is designed to transform the way educational institutions, training providers, and enterprises deliver knowledge. With an intuitive interface, scalable architecture, and built-in analytics, SkillArc ensures a seamless experience for both instructors and learners.",
         keyBenefits: [
           "Cut Administrative Workload by 60% - Automate scheduling, grading, and reporting—freeing educators to focus on teaching.",
           "Boost Student Engagement by 2x - Keep learners motivated with gamified quizzes, interactive modules, and personalized learning paths.",
@@ -44,40 +42,27 @@ const ProductsComponent = () => {
           enterprise: "Coming Soon - Contact us for details"
         }
       }
-    },
-    // You can add more products here
+    }
   ];
 
   const openModal = (product) => {
-    // Debugging line: Check if the function is called and with what product
-    console.log("Attempting to open modal for:", product.title);
     setSelectedProduct(product);
-    setActiveTab('overview'); // Reset tab to overview when opening new modal
+    setActiveTab('overview');
   };
 
   const closeModal = () => {
-    // Debugging line: Check if the close function is called
-    console.log("Attempting to close modal.");
     setSelectedProduct(null);
   };
 
-  // Handler for "Contact Us Today" button
   const handleContactUsClick = () => {
-    console.log("Redirecting to contact page...");
-    navigate('/contact'); // Redirects to the /contact route
+    navigate('/contact');
   };
 
-  // Handler for "Schedule Demo" button
   const handleScheduleDemoClick = () => {
-    console.log("Redirecting to demo scheduling...");
-    // You can navigate to a demo page or open a scheduling modal
-    navigate('/demo'); // Or whatever route you prefer
+    navigate('/demo');
   };
 
-  // Handler for "Get Started" button
   const handleGetStartedClick = (productId) => {
-    console.log("Get started clicked for product:", productId);
-    // Navigate to signup/onboarding or specific product page
     navigate(`/get-started/${productId}`);
   };
 
@@ -108,7 +93,7 @@ const ProductsComponent = () => {
             transition={{ delay: index * 0.1 }}
           >
             <div className="product-image">
-              <img src={product.image} alt={product.title} />
+              <img className="product-thumb" src={product.image} alt={product.title} />
               <div className="product-overlay">
                 <button 
                   className="view-details-btn"
@@ -166,19 +151,16 @@ const ProductsComponent = () => {
               <div className="modal-header">
                 <h2>{selectedProduct.title}</h2>
                 <button className="close-btn" onClick={closeModal}>
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
+                  ✕
                 </button>
               </div>
 
               <div className="modal-body">
                 <div className="modal-image">
-                  <img src={selectedProduct.image} alt={selectedProduct.title} />
+                  <img className="product-large" src={selectedProduct.image} alt={selectedProduct.title} />
                 </div>
 
-                {/* Tab Navigation for Modal Content */}
+                {/* Tabs */}
                 <div className="modal-tabs">
                   <button
                     className={`tab-button ${activeTab === 'overview' ? 'active' : ''}`}
@@ -206,7 +188,6 @@ const ProductsComponent = () => {
                   </button>
                 </div>
 
-                {/* Tab Content (conditionally rendered) */}
                 <div className="tab-content-container">
                   <AnimatePresence mode="wait">
                     {activeTab === 'overview' && (
@@ -222,7 +203,6 @@ const ProductsComponent = () => {
                         <p>{selectedProduct.detailedInfo.overview}</p>
                       </motion.div>
                     )}
-
                     {activeTab === 'benefits' && (
                       <motion.div
                         key="benefits"
@@ -235,15 +215,11 @@ const ProductsComponent = () => {
                         <h3>Key Benefits</h3>
                         <ul>
                           {selectedProduct.detailedInfo.keyBenefits.map((benefit, idx) => (
-                            <li key={idx}>
-                              {/* Only one tick icon, remove duplicate */}
-                              {benefit}
-                            </li>
+                            <li key={idx}>{benefit}</li>
                           ))}
                         </ul>
                       </motion.div>
                     )}
-
                     {activeTab === 'techSpecs' && (
                       <motion.div
                         key="techSpecs"
@@ -256,14 +232,11 @@ const ProductsComponent = () => {
                         <h3>Technical Specifications</h3>
                         <ul>
                           {selectedProduct.detailedInfo.technicalSpecs.map((spec, idx) => (
-                            <li key={idx}>
-                              <span className="icon-settings">⚙</span> {spec}
-                            </li>
+                            <li key={idx}>⚙ {spec}</li>
                           ))}
                         </ul>
                       </motion.div>
                     )}
-
                     {activeTab === 'pricing' && (
                       <motion.div
                         key="pricing"
@@ -313,7 +286,7 @@ const ProductsComponent = () => {
         )}
       </AnimatePresence>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="products-cta">
         <div className="cta-content">
           <h2>Ready to Transform Your Business?</h2>
@@ -338,6 +311,5 @@ const ProductsComponent = () => {
   );
 };
 
-// Export default as lazy-loaded component
 const Products = React.memo(ProductsComponent);
 export default Products;

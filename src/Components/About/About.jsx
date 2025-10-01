@@ -33,13 +33,11 @@ Our strength lies in our passionate team and a forward-thinking mindset. Togethe
       {/* Managing Director Section */}
       <section className="managing-director">
         <h2>Our Chairman/ Managing Director</h2>
-        <div className="director-card">
-          <img src={chairmanImg} alt="Srinivas Chakravarthy Maganti" />
-          <div className="director-info">
-            <h3>Srinivas Chakravarthy Maganti</h3>
-            <p>
-          
-            </p>
+        <div className="director-cards">
+          <div className="director-card">
+            <img src={chairmanImg} alt="Srinivas Chakravarthy Maganti" />
+            <h4>Srinivas Chakravarthy Maganti</h4>
+            <p></p>
           </div>
         </div>
       </section>
@@ -51,22 +49,22 @@ Our strength lies in our passionate team and a forward-thinking mindset. Togethe
     <div className="member-card">
       <img src={member1} alt="Team Member 1" />
       <h4>Yeshraj Maganti</h4>
-      <p></p>
+      <p>CEO</p>
     </div>
     <div className="member-card">
       <img src={member2}  alt="Team Member 2" />
       <h4>Krishna Prabhu Maganti</h4>
-      <p></p>
+      <p>CMO</p>
     </div>
     <div className="member-card">
       <img src={member3}  alt="Team Member 3" />
       <h4>Ravi Kumar Lanke</h4>
-      <p></p>
+      <p>CTO</p>
     </div>
      <div className="member-card">
       <img src={member4}  alt="Team Member 4" />
       <h4>Jagadeesh Pilli</h4>
-      <p></p>
+      <p>COO</p>
     </div>
   </div>
 

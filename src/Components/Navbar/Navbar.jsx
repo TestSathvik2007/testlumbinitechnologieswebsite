@@ -48,7 +48,9 @@ const Navbar = () => {
   return (
     <header className={`header ${isSticky ? 'sticky' : ''}`}>
       <div className="logo-wrap">
-        <Link to="/" className="logo" onClick={closeMenu}>Lumbini Technologies</Link>
+        <Link to="/" className="logo" onClick={closeMenu}>
+          Lumbini Technologies
+        </Link>
         <LogoSprinkles />
       </div>
 
@@ -62,7 +64,9 @@ const Navbar = () => {
       </div>
 
       <nav className={`navbar ${menuOpen ? 'show' : ''}`}>
-        <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={closeMenu}>Home</Link>
+        <Link to="/" className={location.pathname === '/' ? 'active' : ''} onClick={closeMenu}>
+          Home
+        </Link>
 
         <div 
           className="dropdown-container"
@@ -84,11 +88,22 @@ const Navbar = () => {
             <Link to="/Gallery" onClick={closeMenu} role="menuitem">Gallery</Link>
           </div>
         </div>
-        <Link to="/ServicePage" className={location.pathname === '/ServicePage' ? 'active' : ''} onClick={closeMenu}>Services</Link>
-        <Link to="/Career" className={location.pathname === '/Career' ? 'active' : ''} onClick={closeMenu}>Careers</Link>
-        <Link to="/Products" className={location.pathname === '/Products' ? 'active' : ''} onClick={closeMenu}>Products</Link>
-        <Link to="/Contact" className={location.pathname === '/Contact' ? 'active' : ''} onClick={closeMenu}>Contact</Link>
-        <Link to="/Login" className={location.pathname === '/Login' ? 'active' : ''} onClick={closeMenu}>Login</Link>
+
+        <Link to="/ServicePage" className={location.pathname === '/ServicePage' ? 'active' : ''} onClick={closeMenu}>
+          Services
+        </Link>
+        <Link to="/Career" className={location.pathname === '/Career' ? 'active' : ''} onClick={closeMenu}>
+          Careers
+        </Link>
+        <Link to="/Products" className={location.pathname === '/Products' ? 'active' : ''} onClick={closeMenu}>
+          Products
+        </Link>
+        <Link to="/Contact" className={location.pathname === '/Contact' ? 'active' : ''} onClick={closeMenu}>
+          Contact
+        </Link>
+        <Link to="/Login" className={location.pathname === '/Login' ? 'active' : ''} onClick={closeMenu}>
+          Login
+        </Link>
       </nav>
     </header>
   );

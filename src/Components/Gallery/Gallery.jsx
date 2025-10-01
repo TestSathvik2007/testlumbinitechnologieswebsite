@@ -19,6 +19,15 @@ import {
 } from 'lucide-react';
 import './Gallery.css';
 
+// Import your local images
+import clientMeeting1 from '../../assets/clientmeeting1.jpeg';
+import clientMeeting2 from '../../assets/clientmeeting2.jpeg';
+import clientMeeting3 from '../../assets/clientmeeting3.jpeg';
+
+import anniversary1 from '../../assets/oneyearanniversary1.jpeg';
+import anniversary2 from '../../assets/oneyearanniversary2.jpeg';
+import anniversary3 from '../../assets/oneyearanniversary3.jpeg';
+
 const Gallery = () => {
   const [selectedItem, setSelectedItem] = useState(null);
   const [slideIndex, setSlideIndex] = useState(0);
@@ -58,9 +67,9 @@ const Gallery = () => {
       title: "Client Meeting",
       category: "Events",
       images: [
-        "https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=1200&h=800&fit=crop",
-        "https://images.unsplash.com/photo-1520880867055-1e30d1cb001c?w=1200&h=800&fit=crop",
-        "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1200&h=800&fit=crop"
+        clientMeeting1,
+        clientMeeting2,
+        clientMeeting3
       ],
       description: "Snapshots from our recent client meeting.",
       tags: ["client", "meeting", "business"]
@@ -70,9 +79,9 @@ const Gallery = () => {
       title: "1-Year Anniversary",
       category: "Events",
       images: [
-        "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=1200&h=800&fit=crop",
-        "https://images.unsplash.com/photo-1519741497674-611481863552?w=1200&h=800&fit=crop",
-        "https://images.unsplash.com/photo-1454179083322-198bb4daae63?w=1200&h=800&fit=crop"
+        anniversary1,
+        anniversary2,
+        anniversary3
       ],
       description: "Celebrating our first anniversary milestone.",
       tags: ["anniversary", "milestone", "celebration"]
@@ -162,6 +171,7 @@ const Gallery = () => {
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       className="image-modal-overlay"
+      onClick={onClose}
     >
       <motion.div
         initial={{ scale: 0.8, opacity: 0 }}

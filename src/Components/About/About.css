@@ -23,40 +23,86 @@
 
 .managing-director {
   text-align: center;
-  margin-bottom: 20rem;
+  margin-bottom: 5rem;
 }
 
-.director-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1.5rem;
+.managing-director h2 {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+  color: #ffffff;
 }
 
-.director-card img {
-  width: 200px;
-  height: 200px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid white;
-  margin-top: 3rem;
-  margin-bottom: -1rem;
-}
-
-.director-info h3 {
-  margin: 1rem 0;
-  font-size: 1.3rem;
-}
-
-.director-info p {
-  font-size: 1rem;
-  max-width: 600px;
+.director-cards {
+  display: grid;
+  justify-items: center; /* ✅ Ensures cards are centered */
+  gap: 39px;
+  width: 100%;
   margin: 0 auto;
 }
 
-.our-members {
-  margin-top: -200px;
+.director-card {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 10px rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  width: 320px;
+  height: 270px;
   text-align: center;
+  transition: transform 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.director-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 25px rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.director-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: conic-gradient(from 0deg, rgba(250, 204, 21, 0.0), rgba(250, 204, 21, 0.35), rgba(255,255,255,0.12), rgba(250, 204, 21, 0.35), rgba(250, 204, 21, 0.0));
+  filter: blur(14px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 0;
+}
+
+.director-card:hover::before {
+  opacity: 1;
+  animation: cardGlowSpin 0s linear infinite;
+}
+
+.director-card > * { 
+  position: relative; 
+  z-index: 1; 
+}
+
+.director-card img {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 2rem;
+}
+
+.director-card h4 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+
+.director-card p {
+  color: #ffffff;
+  font-size: 0.95rem;
+}
+
+.our-members {
+  text-align: center;
+  margin-bottom: 5rem;
 }
 
 .our-members h2 {
@@ -70,7 +116,7 @@
   flex-wrap: wrap;
   justify-content: center;
   gap: 39px;
-  margin-bottom: 300px;
+  margin-bottom: 3rem;
 }
 
 .member-card {
@@ -131,7 +177,7 @@
 }
 
 .mission-statement {
-  margin-top: -17rem;
+  margin-top: 2rem;
   font-size: 1.1rem;
   text-align: center;
   color: #ffffff;
@@ -232,9 +278,14 @@
     font-size: 1.1rem;
   }
 
+  .director-card {
+    width: 280px;
+    height: 250px;
+  }
+
   .director-card img {
-    width: 180px;
-    height: 180px;
+    width: 110px;
+    height: 110px;
   }
 
   .member-cards {
@@ -270,7 +321,6 @@
   }
 
   .about-intro p,
-  .director-info p,
   .mission-statement {
     font-size: 0.95rem;
     padding: 0 0.5rem;
@@ -280,15 +330,34 @@
     margin-bottom: 3rem;
   }
 
+  .managing-director h2 {
+    font-size: 1.3rem;
+  }
+
+  .director-cards {
+    padding: 0 0.5rem;
+  }
+
+  .director-card {
+    width: 100%;
+    max-width: 350px;
+    height: auto;
+    padding: 1.2rem;
+  }
+
   .director-card img {
-    width: 120px;
-    height: 120px;
-    margin-top: 1rem;
+    width: 90px;
+    height: 90px;
+    margin-bottom: 1rem;
   }
   
-  .director-info h3 {
-    font-size: 1.1rem;
-    margin: 0.8rem 0;
+  .director-card h4 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .director-card p {
+    font-size: 0.85rem;
   }
   
   .our-members {
@@ -329,8 +398,8 @@
   }
 
   .mission-statement {
-    margin-top: -2rem;
     font-size: 0.95rem;
+    margin-top: 2rem;
     margin-bottom: 2rem;
   }
 
@@ -352,6 +421,10 @@
 
   .testimonial-logo {
     width: 70px;
+  }
+
+  .testimonial p {
+    font-size: 0.9rem;
   }
 
   .testimonial h4 {
@@ -381,17 +454,22 @@
     font-size: 0.9rem;
   }
 
+  .director-card {
+    padding: 1rem;
+  }
+
   .director-card img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
   }
 
-  .director-info h3 {
-    font-size: 1rem;
+  .director-card h4 {
+    font-size: 0.9rem;
+    margin-bottom: 0.4rem;
   }
 
-  .director-info p {
-    font-size: 0.85rem;
+  .director-card p {
+    font-size: 0.8rem;
   }
 
   .member-cards {
@@ -420,7 +498,7 @@
 
   .mission-statement {
     font-size: 0.9rem;
-    margin-top: -1rem;
+    margin-top: 1.5rem;
     margin-bottom: 1.5rem;
   }
 

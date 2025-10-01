@@ -18,8 +18,6 @@ const Career = () => {
     description: "We're currently accepting applications for student internships. If you're passionate about learning and building real-world projects with us, submit your application using the form.",
   };
 
-  // No departments or locations for internships-only page
-
   const benefits = [
     { 
       icon: <Heart className="w-8 h-8" />, 
@@ -42,8 +40,6 @@ const Career = () => {
       description: "Collaborative environment, team events, innovation time, and work with amazing colleagues" 
     }
   ];
-
-  // Single internship card, no filtering needed
 
   const JobCard = ({ job }) => (
     <motion.div
@@ -69,8 +65,6 @@ const Career = () => {
     </motion.div>
   );
 
-  // Removed job details modal; we go straight to application form
-
   const ApplicationModal = ({ job, onClose }) => {
     const [formData, setFormData] = useState({
       name: '',
@@ -86,7 +80,6 @@ const Career = () => {
       setIsSubmitting(true);
       
       try {
-        // Simulate API call
         await new Promise(resolve => setTimeout(resolve, 1000));
         alert('Application submitted successfully!');
         onClose();
@@ -232,7 +225,11 @@ const Career = () => {
               <p className="stat-label">Active Internship</p>
             </div>
             <div className="stat-card">
-              <span className="stat-number">Bengaluru</span>
+              <span className="stat-number">Vijayawada</span>
+              <p className="stat-label">Current Workspace</p>
+            </div>
+            <div className="stat-card">
+              <span className="stat-number">Bangalore</span>
               <p className="stat-label">Workspace Coming Soon</p>
             </div>
           </motion.div>
@@ -244,7 +241,8 @@ const Career = () => {
           >
             <p className="info-text">
               We are currently offering <strong>internships for students</strong> only. Our team has
-              <strong> 20+ members</strong>, and one workspace is <strong>coming soon in Bengaluru</strong>.
+              <strong> 20+ members</strong>. One workspace is active in <strong>Vijayawada</strong>, 
+              and another is <strong>coming soon in Bangalore</strong>.
             </p>
           </motion.div>
         </div>
