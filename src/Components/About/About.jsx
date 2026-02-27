@@ -5,7 +5,7 @@ import chairmanImg from '../../assets/chairman.jpeg';
 import nighaLogo from '../../assets/nighalogo.jpg';
 import ideployLogo from '../../assets/ideploylogo.jpg';
 import gatesLogo from '../../assets/gateslogo.png';
-import member1 from '../../assets/yeshrajmaganti.jpg';
+//import member1 from '../../assets/yeshrajmaganti.jpg';
 import member2 from '../../assets/krishnaprabhumaganti.jpg';
 import member3 from '../../assets/ravikumarlanke.png';
 import member4 from '../../assets/jagadeeshpilli.jpg';
@@ -46,11 +46,11 @@ Our strength lies in our passionate team and a forward-thinking mindset. Togethe
 <section className="our-members" id="members">
   <h2>Our Members</h2>
   <div className="member-cards">
-    <div className="member-card">
+    {/*<div className="member-card">
       <img src={member1} alt="Team Member 1" />
       <h4>Yeshraj Maganti</h4>
       <p>CEO</p>
-    </div>
+    </div> */}
     <div className="member-card">
       <img src={member2}  alt="Team Member 2" />
       <h4>Krishna Prabhu Maganti</h4>
