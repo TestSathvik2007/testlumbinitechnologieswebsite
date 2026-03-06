@@ -1,88 +1,62 @@
 import React, { createContext, useContext, useState, useEffect } from "react";
-import { getSession, onAuthStateChange, signOut, isAdmin } from "../services/auth";
+import { supabase } from "../services/supabase";
 
-// Create context
-const AuthContext = createContext();
+const AuthContext = createContext(null);
 
-// Provider component
 export const AuthProvider = ({ children }) => {
+  const [session, setSession] = useState(null);
   const [user, setUser] = useState(null);
-  const [isAdminUser, setIsAdminUser] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Initialize auth on app load
+  // Get session on mount
   useEffect(() => {
-    const initializeAuth = async () => {
+    const getInitialSession = async () => {
       try {
-        console.log("[AuthContext] Initializing auth...");
+        const { data, error: sessionError } = await supabase.auth.getSession();
+        if (sessionError) throw sessionError;
         
-        // Check for existing session
-        const session = await getSession();
-        
-        if (session?.user) {
-          console.log("[AuthContext] Session found for:", session.user.email);
-          setUser(session.user);
-          
-          // Check if admin
-          const admin = await isAdmin(session.user.email);
-          setIsAdminUser(admin);
-        } else {
-          console.log("[AuthContext] No session found");
-          setUser(null);
-          setIsAdminUser(false);
-        }
+        setSession(data.session);
+        setUser(data.session?.user || null);
       } catch (err) {
-        console.error("[AuthContext] Init error:", err);
+        console.error("[AuthContext] Session error:", err);
         setError(err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    initializeAuth();
+    getInitialSession();
   }, []);
 
   // Listen for auth state changes
   useEffect(() => {
-    const { data: { subscription } } = onAuthStateChange(async (event, session) => {
-      console.log("[AuthContext] Auth state changed:", event);
-      
-      if (session?.user) {
-        setUser(session.user);
-        const admin = await isAdmin(session.user.email);
-        setIsAdminUser(admin);
-      } else {
-        setUser(null);
-        setIsAdminUser(false);
-      }
-    });
+    const { data: { subscription } } = supabase.auth.onAuthStateChange(
+      (_event, session) => {
+        console.log("[AuthContext] Auth state changed:", _event);
+        setSession(session);
+        setUser(session?.user || null);
+      },
+    );
 
-    // Cleanup subscription
     return () => {
       subscription?.unsubscribe();
     };
   }, []);
 
   const logout = async () => {
-    await signOut();
+    await supabase.auth.signOut();
+    setSession(null);
     setUser(null);
-    setIsAdminUser(false);
   };
 
-  const value = {
-    user,
-    isAdminUser,
-    loading,
-    error,
-    logout,
-    isAuthenticated: !!user,
-  };
-
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return (
+    <AuthContext.Provider value={{ session, user, loading, error, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
-// Custom hook to use auth context
 export const useAuth = () => {
   const context = useContext(AuthContext);
   if (!context) {
