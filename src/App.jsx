@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect, useState } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -6,7 +6,9 @@ import {
   useLocation,
 } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
-import { supabase } from "./services/supabase";
+
+// ── Auth Context
+import { AuthProvider } from "./context/AuthContext";
 
 // Components (eager — always needed)
 import Navbar from "./Components/Navbar/Navbar";
@@ -133,50 +135,25 @@ const AnimatedRoutes = () => {
 
 // ── Root App ──────────────────────────────────────────────────────────────────
 const App = () => {
-  const [session, setSession] = useState(null);
-
-  // 1. Get session on mount
-  useEffect(() => {
-    const getSession = async () => {
-      const { data, error } = await supabase.auth.getSession();
-      if (error) console.error(error);
-      setSession(data.session);
-    };
-    getSession();
-  }, []);
-
-  // 2. Listen for login/logout — update state + redirect if needed
-  useEffect(() => {
-    const { data: listener } = supabase.auth.onAuthStateChange(
-      (_event, session) => {
-        setSession(session);
-        if (!session && !isPublicPath(window.location.pathname)) {
-          window.location.href = "/Login";
-        }
-      },
-    );
-    return () => {
-      listener.subscription.unsubscribe();
-    };
-  }, []);
-
   return (
     <Router basename={import.meta.env.BASE_URL}>
-      <ScrollToTop />
-      <MouseFollower />
-      <MouseParallax />
-      <CustomCursor />
-      <Navbar />
-      <Suspense
-        fallback={
-          <div style={{ color: "white", textAlign: "center", padding: "2rem" }}>
-            Loading...
-          </div>
-        }
-      >
-        <AnimatedRoutes />
-      </Suspense>
-      <Footer />
+      <AuthProvider>
+        <ScrollToTop />
+        <MouseFollower />
+        <MouseParallax />
+        <CustomCursor />
+        <Navbar />
+        <Suspense
+          fallback={
+            <div style={{ color: "white", textAlign: "center", padding: "2rem" }}>
+              Loading...
+            </div>
+          }
+        >
+          <AnimatedRoutes />
+        </Suspense>
+        <Footer />
+      </AuthProvider>
     </Router>
   );
 };
