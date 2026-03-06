@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,7 +11,7 @@ import { supabase } from "./services/supabase";
 // Components (eager — always needed)
 import Navbar from "./Components/Navbar/Navbar";
 import Footer from "./Components/Footer/Footer";
-import AdminRoute from "./Components/Admin/AdminRoute"; // guard, not a page
+import AdminRoute from "./Components/Admin/AdminRoute";
 import MouseFollower from "./Components/Effects/MouseFollower";
 import MouseParallax from "./Components/Effects/MouseParallax";
 import CustomCursor from "./Components/Effects/CustomCursor";
@@ -34,7 +34,7 @@ const MyApplications = lazy(() => import("./Components/Users/MyApplications"));
 const UserDashboard = lazy(() => import("./Components/Users/UserDashboard"));
 const AdminDashboard = lazy(() => import("./Components/Admin/AdminDashboard"));
 
-// ── Auth-exempt routes (no redirect on unauthenticated) ───────────────────────
+// ── Auth-exempt routes ────────────────────────────────────────────────────────
 const PUBLIC_PATHS = [
   "/",
   "/about",
@@ -78,108 +78,27 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         {/* ── Public ── */}
-        <Route
-          path="/"
-          element={
-            <PageWrapper>
-              <Home />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/About"
-          element={
-            <PageWrapper>
-              <About />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/Gallery"
-          element={
-            <PageWrapper>
-              <Gallery />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/ServicePage"
-          element={
-            <PageWrapper>
-              <ServicePage />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/Career"
-          element={
-            <PageWrapper>
-              <Career />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/Contact"
-          element={
-            <PageWrapper>
-              <Contact />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/Products"
-          element={
-            <PageWrapper>
-              <Products />
-            </PageWrapper>
-          }
-        />
+        <Route path="/" element={<PageWrapper><Home /></PageWrapper>} />
+        <Route path="/About" element={<PageWrapper><About /></PageWrapper>} />
+        <Route path="/Gallery" element={<PageWrapper><Gallery /></PageWrapper>} />
+        <Route path="/ServicePage" element={<PageWrapper><ServicePage /></PageWrapper>} />
+        <Route path="/Career" element={<PageWrapper><Career /></PageWrapper>} />
+        <Route path="/Contact" element={<PageWrapper><Contact /></PageWrapper>} />
+        <Route path="/Products" element={<PageWrapper><Products /></PageWrapper>} />
 
         {/* ── Auth ── */}
-        <Route
-          path="/Login"
-          element={
-            <PageWrapper>
-              <Login />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <PageWrapper>
-              <Signup />
-            </PageWrapper>
-          }
-        />
+        <Route path="/Login" element={<PageWrapper><Login /></PageWrapper>} />
+        <Route path="/signup" element={<PageWrapper><Signup /></PageWrapper>} />
 
         {/* ── Internship ── */}
         <Route
           path="/internship-application"
-          element={
-            <PageWrapper>
-              <InternshipApplication />
-            </PageWrapper>
-          }
+          element={<PageWrapper><InternshipApplication /></PageWrapper>}
         />
 
         {/* ── User ── */}
-        <Route
-          path="/dashboard"
-          element={
-            <PageWrapper>
-              <UserDashboard />
-            </PageWrapper>
-          }
-        />
-        <Route
-          path="/my-applications"
-          element={
-            <PageWrapper>
-              <MyApplications />
-            </PageWrapper>
-          }
-        />
+        <Route path="/dashboard" element={<PageWrapper><UserDashboard /></PageWrapper>} />
+        <Route path="/my-applications" element={<PageWrapper><MyApplications /></PageWrapper>} />
 
         {/* ── Admin ── */}
         <Route
@@ -201,9 +120,7 @@ const AnimatedRoutes = () => {
           path="*"
           element={
             <PageWrapper>
-              <div
-                style={{ color: "white", textAlign: "center", padding: "3rem" }}
-              >
+              <div style={{ color: "white", textAlign: "center", padding: "3rem" }}>
                 Page Not Found
               </div>
             </PageWrapper>
@@ -216,25 +133,23 @@ const AnimatedRoutes = () => {
 
 // ── Root App ──────────────────────────────────────────────────────────────────
 const App = () => {
-  // 1. On mount: check if an active session exists
+  const [session, setSession] = useState(null);
+
+  // 1. Get session on mount
   useEffect(() => {
-    const checkSession = async () => {
+    const getSession = async () => {
       const { data, error } = await supabase.auth.getSession();
-      if (error) {
-        console.error(error);
-      }
-      if (!data.session) {
-        console.log("No active session");
-      }
+      if (error) console.error(error);
+      setSession(data.session);
     };
-    checkSession();
+    getSession();
   }, []);
 
-  // 2. Ongoing: redirect to /Login when session expires or user signs out,
-  //    but only if the current page is not a public route
+  // 2. Listen for login/logout — update state + redirect if needed
   useEffect(() => {
     const { data: listener } = supabase.auth.onAuthStateChange(
-      (event, session) => {
+      (_event, session) => {
+        setSession(session);
         if (!session && !isPublicPath(window.location.pathname)) {
           window.location.href = "/Login";
         }
